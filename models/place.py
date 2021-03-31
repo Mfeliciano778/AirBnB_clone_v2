@@ -7,12 +7,13 @@ from os import environ, get_terminal_size
 
 
 place_amenity = Table('place_amenity', Base.metadata,
-                    Column('place_id', String(60),
-                            ForeignKey('places.id'),
-                            primary_key=True, nullable=False),
-                    Column('amenity_id', String(60),
-                            ForeignKey('amenities.id'),
-                            primary_key=True, nullable=False))
+                      Column('place_id', String(60),
+                             ForeignKey('places.id'),
+                             primary_key=True, nullable=False),
+                      Column('amenity_id', String(60),
+                             ForeignKey('amenities.id'),
+                             primary_key=True, nullable=False))
+
 
 class Place(BaseModel, Base):
     """ A place to stay """
@@ -30,10 +31,10 @@ class Place(BaseModel, Base):
     amenity_ids = []
 
     if environ.get('HBNB_TYPE_STORAGE') == 'db':
-        reviews = relationship('Review', cascade='all, delete', backref='place')
+        reviews = relationship('Review', cascade='all, delete',
+                               backref='place')
         amenities = relationship('Amenity', backref='place_amenities',
-                                    secondary='place_amenity',
-                                    viewonly=False)
+                                 secondary='place_amenity', viewonly=False)
     else:
         @property
         def amenities(self):
@@ -45,4 +46,3 @@ class Place(BaseModel, Base):
             '''amenities setter'''
             if type(obj).__name__ == 'Amenity':
                 self.amenity_ids.append(obj.id)
-            
