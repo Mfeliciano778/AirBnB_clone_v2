@@ -59,14 +59,14 @@ class DBStorage():
 
     def delete(self, obj=None):
         '''delete'''
-        #delete from current db session obj if not None
+        # delete from current db session obj if not None
         if obj is not None:
             self.__session.delete(obj)
 
     def reload(self):
         '''reload'''
-        #create tables in db
-        #create current db session using sessionmaker
+        # create tables in db
+        # create current db session using sessionmaker
         Base.metadata.create_all(self.__engine)
 
         Session = sessionmaker(bind=self.__engine, expire_on_commit=False)
