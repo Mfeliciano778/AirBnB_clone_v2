@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 """ Place Module for HBNB project """
+from models.review import Review
 from models.base_model import BaseModel, Base
 from sqlalchemy import Column, Integer, String, ForeignKey, Float, Table
 from sqlalchemy.orm import relationship
@@ -31,6 +32,17 @@ class Place(BaseModel, Base):
                                viewonly=False)
     reviews = relationship('Review', cascade='all, delete',
                                backref='place')
+
+    @property
+    def reviews(self):
+        '''reviews'''
+        import models
+        new_list = {}
+        all_reviews = models.storage.all(Review)
+        for key, obj in all_reviews.items():
+            new_list[key] = obj
+        return new_list
+
     @property
     def amenities(self):
         '''amenities getter'''
