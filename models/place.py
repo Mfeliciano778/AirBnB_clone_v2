@@ -3,7 +3,7 @@
 from models.base_model import BaseModel, Base
 from sqlalchemy import Column, Integer, String, ForeignKey, Float, Table
 from sqlalchemy.orm import relationship
-from os import environ, get_terminal_size
+from os import environ
 
 
 place_amenity = Table('place_amenity', Base.metadata,
@@ -28,8 +28,8 @@ class Place(BaseModel, Base):
     price_by_night = Column(Integer, nullable=False, default=0)
     latitude = Column(Float, nullable=True)
     longitude = Column(Float, nullable=True)
-    amenity_ids = relationship('Amenity', backref='place_amenities',
-                               secondary='place_amenity', viewonly=False)
+    amenity_ids = relationship('Amenity', secondary='place_amenity',
+                               viewonly=False)
 
     if environ.get('HBNB_TYPE_STORAGE') == 'db':
         reviews = relationship('Review', cascade='all, delete',
