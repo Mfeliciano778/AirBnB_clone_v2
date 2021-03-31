@@ -30,18 +30,15 @@ class Place(BaseModel, Base):
     longitude = Column(Float, nullable=True)
     amenity_ids = relationship('Amenity', secondary='place_amenity',
                                viewonly=False)
-
-    if environ.get('HBNB_TYPE_STORAGE') == 'db':
-        reviews = relationship('Review', cascade='all, delete',
+    reviews = relationship('Review', cascade='all, delete',
                                backref='place')
-    else:
-        @property
-        def amenities(self):
-            '''amenities getter'''
-            return self.amenity_ids
+    @property
+    def amenities(self):
+        '''amenities getter'''
+        return self.amenity_ids
 
-        @amenities.setter
-        def amenities(self, obj=None):
-            '''amenities setter'''
-            if type(obj).__name__ == 'Amenity':
-                self.amenity_ids.append(obj.id)
+    @amenities.setter
+    def amenities(self, obj=None):
+        '''amenities setter'''
+        if type(obj).__name__ == 'Amenity':
+            self.amenity_ids.append(obj.id)
