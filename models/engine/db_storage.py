@@ -9,7 +9,7 @@ from models.user import User
 from models.state import State
 from models.city import City
 # from models.amenity import Amenity
-# from models.review import Review
+from models.review import Review
 from models.place import Place
 
 
@@ -44,10 +44,7 @@ class DBStorage():
             # except:
             #     print("Amen")
             objs += (self.__session.query(Place).all())
-            # try:
-            #     objs += (self.__session.query(Review).all())
-            # except:
-            #     print("Rev")
+            objs += (self.__session.query(Review).all())
 
         else:
             objs = self.__session.query(cls).all()
@@ -66,14 +63,14 @@ class DBStorage():
 
     def delete(self, obj=None):
         '''delete'''
-        #delete from current db session obj if not None
+        # delete from current db session obj if not None
         if obj is not None:
             self.__session.delete(obj)
 
     def reload(self):
         '''reload'''
-        #create tables in db
-        #create current db session using sessionmaker
+        # create tables in db
+        # create current db session using sessionmaker
         Base.metadata.create_all(self.__engine)
 
         Session = sessionmaker(bind=self.__engine, expire_on_commit=False)
