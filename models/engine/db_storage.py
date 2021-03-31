@@ -8,14 +8,13 @@ from os import getenv as env
 from models.user import User
 from models.state import State
 from models.city import City
-# from models.amenity import Amenity
-# from models.review import Review
+from models.amenity import Amenity
+from models.review import Review
 from models.place import Place
 
 
 class DBStorage():
     '''DBStorage'''
-
     __engine = None
     __session = None
 
@@ -23,11 +22,11 @@ class DBStorage():
         '''__init__'''
         test = env('HBNB_ENV')
         self.__engine = create('mysql+mysqldb://{}:{}@{}/{}'.format(
-                               env('HBNB_MYSQL_USER'),
-                               env('HBNB_MYSQL_PWD'),
-                               env('HBNB_MYSQL_HOST'),
-                               env('HBNB_MYSQL_DB'),
-                               pool_pre_pring=True))
+                            env('HBNB_MYSQL_USER'),
+                            env('HBNB_MYSQL_PWD'),
+                            env('HBNB_MYSQL_HOST'),
+                            env('HBNB_MYSQL_DB'),
+                            pool_pre_pring=True))
         if test == 'test':
             Base.metadata.drop_all(bind=self.__engine)
 
@@ -39,15 +38,9 @@ class DBStorage():
             objs += (self.__session.query(User).all())
             objs += (self.__session.query(City).all())
             objs += (self.__session.query(State).all())
-            # try:
-            #     objs += (self.__session.query(Amenity).all())
-            # except:
-            #     print("Amen")
+            objs += (self.__session.query(Amenity).all())
             objs += (self.__session.query(Place).all())
-            # try:
-            #     objs += (self.__session.query(Review).all())
-            # except:
-            #     print("Rev")
+            objs += (self.__session.query(Review).all())
 
         else:
             objs = self.__session.query(cls).all()
