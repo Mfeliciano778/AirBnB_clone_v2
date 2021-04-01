@@ -145,7 +145,8 @@ Usage: <class_name>.update(<_id>, <dictionary>)
 Added an alternative to file storage that uses mysql and sqlalchemy to store everything in a database
 
 For database storage there are currently 2 users:
-
+```
 hbnb_dev has * privileges for database
 
 hbnb_test has SELECT privileges for database
+```
