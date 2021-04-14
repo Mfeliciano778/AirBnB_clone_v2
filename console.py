@@ -129,7 +129,7 @@ class HBNBCommand(cmd.Cmd):
                 try:
                     if '=' not in args[index]:
                         continue
-                    #seperate key value for each arg
+                    # seperate key value for each arg
                     att_key, value = args[index].split('=')
                     # check if there's double quotes at beginning/end of value
                     if value[0] == '"' and value[len(value) - 1] == '"':
@@ -139,16 +139,16 @@ class HBNBCommand(cmd.Cmd):
                         if '_' in value:
                             value = value.replace('_', ' ')
                         value = str(value)
-                    #check if value is float
+                    # check if value is float
                     elif '.' in value:
                         value = float(value)
-                    #check if value is int
+                    # check if value is int
                     elif isinstance(eval(value), int):
                         value = int(value)
-                #skip
+                # skip
                 except:
                     continue
-                #set attributes
+                # set attributes
                 setattr(new_instance, att_key, value)
 
         print(new_instance.id)
