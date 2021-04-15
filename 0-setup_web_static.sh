@@ -15,7 +15,7 @@ sudo mkdir -p /data/web_static/shared/
 # create data/web_static/releases/test folder
 sudo mkdir -p /data/web_static/releases/test/
 # create fake html file
-sudo echo "<html>Holberton School</html" > /data/web_static/releases/test/index.html
+sudo echo "<html>Holberton School</html" | sudo tee /data/web_static/releases/test/index.html
 # create symbolic link
 sudo ln -sf /data/web_static/releases/test/ /data/web_static/current
 # give ownership to ubuntu
