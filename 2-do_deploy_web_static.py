@@ -14,7 +14,7 @@ def do_deploy(archive_path):
         try:
             put(archive_path, "/tmp")
             file = archive_path.split("/")
-            directory_name = file.split(".")
+            directory_name = file[1].split(".")
             run("sudo mkdir -p /data/web_static/releases/{}/".
                 format(directory_name[0]))
             run("sudo tar -zxf /tmp/{} -C /data/web_static/releases/{}/".
@@ -29,7 +29,8 @@ def do_deploy(archive_path):
             run("sudo ln -s /data/web_static/releases/{}/ \
                 /data/web_static/current".format(directory_name[0]))
             return True
-        except:
+        except Exception as e:
+            print(e)
             return False
     print 
     return False
