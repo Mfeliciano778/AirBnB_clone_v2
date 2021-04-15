@@ -5,6 +5,9 @@ import os
 from datetime import datetime
 
 
+env.hosts = ['34.75.248.37', '34.74.75.108']
+
+
 def do_pack():
     '''do_pack - generates a tgz archive'''
     time_now = datetime.now()
