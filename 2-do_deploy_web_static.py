@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 '''fabric script'''
 from fabric.api import *
-from datetime import datetime
 import os
 
 
@@ -30,7 +29,5 @@ def do_deploy(archive_path):
                 /data/web_static/current".format(directory_name[0]))
             return True
         except Exception as e:
-            print(e)
             return False
-    print 
     return False
