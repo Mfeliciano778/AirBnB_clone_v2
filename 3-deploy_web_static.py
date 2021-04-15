@@ -2,9 +2,21 @@
 '''fabric script'''
 from fabric.api import *
 import os
+from datetime import datetime
 
 
-env.hosts = ['34.75.248.37', '34.74.75.108']
+def do_pack():
+    '''do_pack - generates a tgz archive'''
+    time_now = datetime.now()
+    date_time = time_now.strftime("%Y%m%d%H%M%S")
+    file = "versions/web_static_{}.tgz".format(date_time)
+
+    if not os.path.exists("versions"):
+        local("mkdir versions")
+    local("tar -czvf " + file + " web_static")
+    if os.path.exists(file):
+        return file
+    return None
 
 
 def do_deploy(archive_path):
@@ -31,3 +43,11 @@ def do_deploy(archive_path):
         except Exception as e:
             return False
     return False
+
+
+def deploy():
+    '''deploy'''
+    pack = do_pack()
+    if pack is None:
+        return False
+    return do_deploy(pack)
