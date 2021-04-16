@@ -22,5 +22,5 @@ sudo ln -sf /data/web_static/releases/test/ /data/web_static/current
 sudo chown -R ubuntu:ubuntu /data/
 # update the nginx config
 location="location /hbnb_static {\n\t\talias /data/web_static/current;\n\t}"
-sudo sed -i "s@# SSL configuration@$location\n\n\t# SSL configuration@" /etc/nginx/sites-available/default
+sudo sed -i "s@# pass the PHP@$location\n\n\t# pass the PHP@" /etc/nginx/sites-available/default
 sudo service nginx restart
