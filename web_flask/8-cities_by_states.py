@@ -18,7 +18,7 @@ def html_display():
     allstate = storage.all(State)
     allcities = storage.all(City)
     return render_template("8-cities_by_states.html", allstate=allstate,
-                            allcities=allcities)
+                           allcities=allcities)
 
 
 if __name__ == "__main__":

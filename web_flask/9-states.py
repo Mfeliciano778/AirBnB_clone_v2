@@ -18,7 +18,7 @@ def states_display():
     '''states display'''
     allstate = storage.all(State)
     return render_template("9-states.html", allstate=allstate,
-                            states_only=1)
+                           states_only=1)
 
 
 @app.route('/states/<id>', strict_slashes=False)
@@ -33,8 +33,8 @@ def states_id(id=None):
             is_there = 1
             state = value
     return render_template("9-states.html", allstate=allstate,
-                                    allcities=allcities, is_there=is_there,
-                                    state=state, states_only=0)
+                           allcities=allcities, is_there=is_there,
+                           state=state, states_only=0)
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0")

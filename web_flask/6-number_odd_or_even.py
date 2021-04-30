@@ -34,6 +34,7 @@ def is_num(n):
     '''hello hbnb'''
     return "{} is a number".format(n)
 
+
 @app.route('/number_template/<int:n>', strict_slashes=False)
 def is_num_html(n):
     '''html hbnb'''
