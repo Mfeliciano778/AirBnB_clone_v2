@@ -5,10 +5,10 @@
     </HEAD>
     <BODY>
         <H1>States</H1>
-        <ul>
+        <UL>
             {% for state in allstate.values()|sort(attribute="name") %}
-                <li><a>{{ state.id }} <B>{{ state.name }}</B></a></li>
+                <LI><a>{{ state.id }}: <B>{{ state.name }}</B></a></LI>
             {% endfor %}
-        </ul>
+        </UL>
     </BODY>
 </HTML>
