@@ -12,10 +12,9 @@ class FileStorage:
         """Returns a dictionary of models currently in storage"""
         addall = {}
         if cls is not None:
-            for i in FileStorage.__objects:
-                args = str(FileStorage.__objects[i]).split(" ")
-                if args[0] == "[" + cls.__name__ + "]":
-                    addall[i] = str(FileStorage.__objects[i])
+            for key, value in FileStorage.__objects.items():
+                if value.to_dict()['__class__'] == cls.__name__:
+                    addall[key] = value
             return addall
         else:
             return FileStorage.__objects
@@ -66,3 +65,7 @@ class FileStorage:
             key = name + "." + uuid
             FileStorage.__objects.pop(key, None)
             FileStorage.save(self)
+
+    def close(self):
+        '''deserializes json'''
+        self.reload()

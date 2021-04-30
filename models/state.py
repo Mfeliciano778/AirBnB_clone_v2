@@ -3,7 +3,6 @@
 from models.base_model import BaseModel, Base
 from sqlalchemy import Column, Integer, String, DateTime
 from sqlalchemy.orm import relationship
-from models.city import City
 
 
 class State(BaseModel, Base):
@@ -17,6 +16,7 @@ class State(BaseModel, Base):
     @property
     def cities(self):
         '''cities'''
+        from models.city import City
         from models import storage
         new_dict = []
 
