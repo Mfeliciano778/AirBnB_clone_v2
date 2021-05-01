@@ -10,6 +10,12 @@ def hello_world():
     return 'Hello HBNB!'
 
 
+@app.route('/c/<text>', strict_slashes=False)
+def c_text(text):
+    '''hello hbnb'''
+    return 'C {}'.format(text.replace('_', ' '))
+
+
 @app.route('/hbnb', strict_slashes=False)
 def start():
     '''hello hbnb'''
