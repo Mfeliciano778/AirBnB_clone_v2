@@ -12,7 +12,7 @@ def close_session(self):
     storage.close()
 
 
-@app.route('/cities_by_states', strict_slashes=False)
+@app.route('/states_list', strict_slashes=False)
 def html_display():
     allstate = storage.all(State)
     return render_template('7-states_list.html', allstate=allstate)
